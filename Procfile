@@ -1,1 +1,1 @@
-web: gunicorn restFrameworkStudy.wsgi
+web: gunicorn restFrameworkStudy2.wsgi
