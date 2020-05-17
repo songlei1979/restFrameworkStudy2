@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -15,6 +16,7 @@ class Student(models.Model):
     ethnic_code = models.CharField(max_length=100)
     ethnic_desc = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, related_name="students", on_delete=models.CASCADE, null=True)
 
 
 class Subject(models.Model):

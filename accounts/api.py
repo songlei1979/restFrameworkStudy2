@@ -7,9 +7,16 @@ from .serializers import StudentSerializer, SubjectSerializer, StudentSubjectSer
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
+
     serializer_class = StudentSerializer
+
+    def get_queryset(self):
+        return self.request.user.students.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 # Subject Viewset
